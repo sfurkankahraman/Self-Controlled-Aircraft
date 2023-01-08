@@ -1,0 +1,258 @@
+### Arduino codes used to get data from gyro sensor
+### It is used for 4-bit data 
+
+#include<Wire.h>
+ 
+#define MPU 0x68
+
+int16_t ivmeY, ivmeX;
+int X1, X2, X3, X4;
+int Y1, Y2, Y3, Y4;
+
+void setup(){
+  Wire.begin();
+  Wire.beginTransmission(MPU);
+  Wire.write(0x6B);
+  Wire.write(0); 
+  Wire.endTransmission(true);
+  Serial.begin(9600);
+  pinMode(X1, OUTPUT);
+  pinMode(X2, OUTPUT);
+  pinMode(X3, OUTPUT);
+  pinMode(X4, OUTPUT);
+  pinMode(Y1, OUTPUT);
+  pinMode(Y2, OUTPUT);
+  pinMode(Y3, OUTPUT);
+  pinMode(Y4, OUTPUT);
+  
+}
+void loop(){
+  
+   verileriOku();
+
+   if(ivmeX > 15750){
+   X1 = 1;
+   X2 = 1;
+   X3 = 1;
+   X4 = 1;
+   }
+   else if(ivmeX > 13500) {
+   X1 = 0;
+   X2 = 1;
+   X3 = 1;
+   X4 = 1;
+   }
+   else if(ivmeX > 11250) {
+   X1 = 1;
+   X2 = 0;
+   X3 = 1;
+   X4 = 1;
+   }
+   else if(ivmeX > 9000) {
+   X1 = 0;
+   X2 = 0;
+   X3 = 1;
+   X4 = 1;
+   }
+   else if(ivmeX > 6750) {
+   X1 = 1;
+   X2 = HIGH;
+   X3 = LOW;
+   X4 = HIGH;
+   }
+   else if(ivmeX > 4500) {
+   X1 = LOW;
+   X2 = HIGH;
+   X3 = LOW;
+   X4 = HIGH;
+   }
+   else if(ivmeX > 2250) {
+   X1 = HIGH;
+   X2 = LOW;
+   X3 = LOW;
+   X4 = HIGH;
+   }
+   else if(ivmeX > 0) {
+   X1 = LOW;
+   X2 = LOW;
+   X3 = LOW;
+   X4 = HIGH;
+   }
+   else if(ivmeX > -2250){
+   X1 = HIGH;
+   X2 = HIGH;
+   X3 = HIGH;
+   X4 = LOW;
+   }
+   else if(ivmeX > -4500) {
+   X1 = LOW;
+   X2 = HIGH;
+   X3 = HIGH;
+   X4 = LOW;
+   }
+   else if(ivmeX > -6750) {
+   X1 = HIGH;
+   X2 = LOW;
+   X3 = HIGH;
+   X4 = LOW;
+   }
+   else if(ivmeX > -9000) {
+   X1 = LOW;
+   X2 = LOW;
+   X3 = HIGH;
+   X4 = LOW;
+   }
+   else if(ivmeX > -11250) {
+   X1 = HIGH;
+   X2 = HIGH;
+   X3 = LOW;
+   X4 = LOW;
+   }
+   else if(ivmeX > -13500) {
+   X1 = LOW;
+   X2 = HIGH;
+   X3 = LOW;
+   X4 = LOW;
+   }
+   else if(ivmeX > -15750) {
+   X1 = HIGH;
+   X2 = LOW;
+   X3 = LOW;
+   X4 = LOW;
+   }
+   else if(ivmeX > -18500) {
+   X1 = LOW;
+   X2 = LOW;
+   X3 = LOW;
+   X4 = LOW;
+   }
+   
+   if(ivmeY > 15750){
+   Y1 = HIGH;
+   Y2 = HIGH;
+   Y3 = HIGH;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 13500) {
+   Y1 = LOW;
+   Y2 = HIGH;
+   Y3 = HIGH;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 11250) {
+   Y1 = HIGH;
+   Y2 = LOW;
+   Y3 = HIGH;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 9000) {
+   Y1 = LOW;
+   Y2 = LOW;
+   Y3 = HIGH;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 6750) {
+   Y1 = HIGH;
+   Y2 = HIGH;
+   Y3 = LOW;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 4500) {
+   Y1 = LOW;
+   Y2 = HIGH;
+   Y3 = LOW;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 2250) {
+   Y1 = HIGH;
+   Y2 = LOW;
+   Y3 = LOW;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > 0) {
+   Y1 = LOW;
+   Y2 = LOW;
+   Y3 = LOW;
+   Y4 = HIGH;
+   }
+   else if(ivmeY > -2250){
+   Y1 = HIGH;
+   Y2 = HIGH;
+   Y3 = HIGH;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -4500) {
+   Y1 = LOW;
+   Y2 = HIGH;
+   Y3 = HIGH;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -6750) {
+   Y1 = HIGH;
+   Y2 = LOW;
+   Y3 = HIGH;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -9000) {
+   Y1 = LOW;
+   Y2 = LOW;
+   Y3 = HIGH;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -11250) {
+   Y1 = HIGH;
+   Y2 = HIGH;
+   Y3 = LOW;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -13500) {
+   Y1 = LOW;
+   Y2 = HIGH;
+   Y3 = LOW;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -15750) {
+   Y1 = HIGH;
+   Y2 = LOW;
+   Y3 = LOW;
+   Y4 = LOW;
+   }
+   else if(ivmeY > -18500) {
+   Y1 = LOW;
+   Y2 = LOW;
+   Y3 = LOW;
+   Y4 = LOW;
+   }
+   
+   Serial.print(" X1 = "); Serial.print(X1);
+   Serial.print(" X2 = "); Serial.print(X2);
+   Serial.print(" X3 = "); Serial.print(X3);
+   Serial.print(" X4 = "); Serial.print(X4);
+   Serial.print(" Y1 = "); Serial.print(Y1);
+   Serial.print(" Y2 = "); Serial.print(Y2);
+   Serial.print(" Y3 = "); Serial.print(Y3);
+   Serial.print(" Y4 = "); Serial.print(Y4);
+   Serial.print("  ivmeX = "); Serial.print(ivmeX);
+   Serial.print(" | ivmeY = "); Serial.println(ivmeY);
+   delay(100);
+}
+
+void verileriOku(){
+  Wire.beginTransmission(MPU);
+  Wire.write(0x3B);
+  Wire.endTransmission(false);
+  Wire.requestFrom(MPU,14,true);
+  
+  ivmeX=Wire.read()<<8|Wire.read()/1024;   
+  ivmeY=Wire.read()<<8|Wire.read()/1024;
+  ivmeX=Wire.read()<<8|Wire.read()/1024;  
+  digitalWrite(13, X1);
+  digitalWrite(12, X2);
+  digitalWrite(11, X3);
+  digitalWrite(10, X4);
+  digitalWrite(9, Y1);
+  digitalWrite(8, Y2);
+  digitalWrite(7, Y3);
+  digitalWrite(6, Y4);
+  delay(50);
+}
